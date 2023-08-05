@@ -6,16 +6,36 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGIN_FAILURE } from '../../redux/actions/actionTypes/auth.action-types';
+import { OPEN_FAILURE, OPEN_SUCCESS } from '../../redux/actions/actionTypes/authModal.action-types';
 
-interface SlideModalProps {
-    setOpen: (open: boolean) => void;
-  }
 
-export default function Header({setOpen} : SlideModalProps) {
+export default function Header() {
+  const dispatch = useDispatch();
+const isAuth = useSelector(({auth}) => auth.isLoggedIn);
+// const isModalOpen = useSelector(({modalOpen}) => modalOpen.isModalOpen);
 
     const handleOpenAuthModal = () => {
-        setOpen(true);
+      dispatch({type: OPEN_SUCCESS});
     };
+  
+
+    const handleLogOut = () => {
+      fetch('http://localhost:3000/api/logout', {
+        method: 'POST',
+        credentials: 'include',
+      })
+        .then(response => response.json())
+        .then(data => {
+          dispatch({type: OPEN_FAILURE});
+          dispatch({type: LOGIN_FAILURE});
+          console.log(data.message);
+        })
+        .catch(error => {
+          console.error('An error occurred while logging out:', error);
+        });
+    }
 
 
   return (
@@ -32,9 +52,17 @@ export default function Header({setOpen} : SlideModalProps) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            {isAuth && 
+              <p>Admin panel</p>
+            }
           </Typography>
+
+          {isAuth ?
+            <Button color="inherit" onClick={() => handleLogOut()}>Log Out</Button>
+          :
           <Button color="inherit" onClick={handleOpenAuthModal}>Login</Button>
+          }
+        
         </Toolbar>
       </AppBar>
     </Box>

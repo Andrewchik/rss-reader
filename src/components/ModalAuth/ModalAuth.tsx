@@ -3,11 +3,8 @@ import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import SignInForm from '../SignInForm/SignInForm';
-
-interface SlideModalProps {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-  }
+import { useDispatch, useSelector } from 'react-redux';
+import { OPEN_SUCCESS } from '../../redux/actions/actionTypes/authModal.action-types';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -18,16 +15,18 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ModalAuth({open, setOpen} : SlideModalProps) {
+export default function ModalAuth() {
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector(({modalOpen}) => modalOpen.isModalOpen);
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch({type: OPEN_SUCCESS, action: false});
   };
 
   return (
     <div>
       <Dialog
-        open={open}
+        open={isModalOpen}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}

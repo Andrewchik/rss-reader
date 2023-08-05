@@ -4,16 +4,24 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
-import { reducers } from "./redux/reducers";
+import { createStore, combineReducers } from 'redux';
+import authReducer from './redux/reducers/auth.reducer';
+import authModal from './redux/reducers/authModal.reducer';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-export const store = createStore(
-  reducers
-);
+const rootReducer = combineReducers({
+  auth: authReducer,
+  modalOpen: authModal
+});
+
+
+
+const store = createStore(rootReducer);
+
 
 root.render(
   <React.StrictMode>

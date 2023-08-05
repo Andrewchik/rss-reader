@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useFormik, FormikValues } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../../redux/actions/actionTypes/auth.action-types';
+import { OPEN_FAILURE, OPEN_SUCCESS } from '../../redux/actions/actionTypes/authModal.action-types';
 
 const validationSchema = yup.object({
   login: yup.string().required('Login is required'),
@@ -11,26 +14,33 @@ const validationSchema = yup.object({
 
 
 const SignInForm: React.FC = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const isAuth = useSelector(({auth}) => auth.isLoggedIn);
+
+  console.log(isAuth);
+  
+
+  async function checkAuth() {
+    try {
+      const response = await fetch('http://localhost:3000/api/check-auth', {
+        credentials: 'include',
+      });
+      
+      if (response.ok) {
+        dispatch({type: LOGIN_SUCCESS});
+        dispatch({type: OPEN_FAILURE});
+      }
+    } catch (error) {
+      console.error('An error occurred while checking authentication:', error);
+      dispatch({type: LOGIN_FAILURE});
+    }
+  }
+
+
 
     useEffect(() => {
-        async function checkAuth() {
-          try {
-            const response = await fetch('http://localhost:3000/api/check-auth', {
-              credentials: 'include',
-            });
-    
-            if (response.ok) {
-              const data = await response.json();
-              setIsLoggedIn(data.isAuthenticated);
-            }
-          } catch (error) {
-            console.error('An error occurred while checking authentication:', error);
-          }
-        }
-    
-        checkAuth();
-      }, []);
+      checkAuth();
+    }, [dispatch]);
 
 
   const formik = useFormik({
@@ -51,8 +61,9 @@ const SignInForm: React.FC = () => {
         });
 
         if (response.ok) {
-            setIsLoggedIn(true);
+            checkAuth();
             alert('Login successful');
+            dispatch({type: LOGIN_FAILURE});
         } else {
           alert('Login failed. Please check your credentials.');
         }
@@ -64,10 +75,9 @@ const SignInForm: React.FC = () => {
 
   return (
     <div>
-      {isLoggedIn ? (
+      {isAuth ? (
         <div>
           <p>You are logged in.</p>
-          {/* Place your admin panel content here */}
         </div>
       ) : (
         <form onSubmit={formik.handleSubmit}>

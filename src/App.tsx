@@ -9,14 +9,11 @@ import './App.css';
 
 
 function App() {
-  const [open, setOpen] = React.useState(false);
 
   return (
    <>
-      <Header setOpen={setOpen} />
-
-
-      <ModalAuth open={open} setOpen={setOpen} />
+      <Header />
+      <ModalAuth />
    </>
   );
 }
