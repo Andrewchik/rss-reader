@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
+import { useFormik, FormikValues } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,6 +8,7 @@ const validationSchema = yup.object({
   login: yup.string().required('Login is required'),
   password: yup.string().required('Password is required'),
 });
+
 
 const SignInForm: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +39,7 @@ const SignInForm: React.FC = () => {
       password: '',
     },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values : FormikValues) => {
       try {
         const response = await fetch('http://localhost:3000/api/login', {
           method: 'POST',
