@@ -37,6 +37,12 @@
   }
 }
 
+.articles-list{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
 
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper{
   padding: 20px;
