@@ -4,11 +4,10 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGIN_FAILURE } from '../../redux/actions/actionTypes/auth.action-types';
 import { OPEN_FAILURE, OPEN_SUCCESS } from '../../redux/actions/actionTypes/authModal.action-types';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 export default function Header() {
@@ -42,18 +41,14 @@ const isAuth = useSelector(({auth}) => auth.isLoggedIn);
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+        {isAuth && 
+          <div className="add-post" style={{cursor: 'pointer', marginRight: '20px'}}>
+           <AddCircleOutlineIcon />
+          </div>
+        }
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {isAuth && 
-              <p>Admin panel</p>
+              <p>Hello, admin</p>
             }
           </Typography>
 

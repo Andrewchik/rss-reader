@@ -16,8 +16,6 @@ const validationSchema = yup.object({
 const SignInForm: React.FC = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(({auth}) => auth.isLoggedIn);
-
-  console.log(isAuth);
   
 
   async function checkAuth() {
