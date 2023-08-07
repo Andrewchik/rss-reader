@@ -41,7 +41,6 @@ export default function ArticleCard({article, onDelete, onUpdate} : ArticleProps
     }
 }
 
-
   return (
     <Card sx={{ maxWidth: 345, marginBottom: '20px', marginRight: '20px', position: 'relative' }}>
       {isAuth && 

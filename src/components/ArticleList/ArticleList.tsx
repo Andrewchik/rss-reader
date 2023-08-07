@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ArticleCard from '../ArticleCard/ArticleCard';
+import ArticleForm from '../ArticleForm/ArticleForm';
 
 interface Article {
   _id: string;
@@ -12,6 +13,10 @@ export const ArticleList = () => {
 
 
   useEffect(() => {
+    fetchArticles();
+  }, []);
+
+
     const fetchArticles = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/articles');
@@ -25,10 +30,10 @@ export const ArticleList = () => {
         console.error(error);
       }
     };
-  
-    fetchArticles();
-  }, []);
 
+  const handleCreate = (newArticle: Article) => {
+    setArticles([...articles, newArticle]);
+  };
 
   const onDeleteArticle = (articleId : string) => {
     setArticles(articles.filter(article => article._id !== articleId));
@@ -42,34 +47,13 @@ export const ArticleList = () => {
       )
     );
   };
-
-  const handleAdd = async (newArticle: Article) => {
-    try {
-      const response = await fetch('/api/articles', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: newArticle.title,
-          content: newArticle.content,
-        }),
-      });
-  
-      if (response.status === 201) {
-        const data = await response.json();
-        setArticles([...articles, data]);
-      }
-    } catch (error) {
-      console.error('Error adding article:', error);
-    }
-  };
   
   
 
   return (
     <div>
       <ul className='articles-list'>
+        <ArticleForm onCreate={handleCreate} />
         {articles.map(article => (
          <ArticleCard key={article._id} article={article} onDelete={onDeleteArticle} onUpdate={onUpdateArticle} />
         ))}

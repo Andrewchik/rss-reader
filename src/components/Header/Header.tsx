@@ -42,11 +42,12 @@ const isAuth = useSelector(({auth}) => auth.isLoggedIn);
       <AppBar position="static">
         <Toolbar>
         {isAuth && 
-          <div className="add-post" style={{cursor: 'pointer', marginRight: '20px'}}>
+          <div className="add-post" style={{cursor: 'pointer', marginRight: '20px', display: 'flex', alignItems: 'center'}}>
            <AddCircleOutlineIcon />
+           <span>Create Article</span>
           </div>
         }
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
             {isAuth && 
               <p>Hello, admin</p>
             }
