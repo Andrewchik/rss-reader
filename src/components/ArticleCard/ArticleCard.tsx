@@ -7,18 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useSelector } from 'react-redux';
 import ArticleEditForm from '../ArticleEditForm/ArticleEditForm';
-
-interface Article {
-  _id: string;
-  title: string;
-  content: string;
-}
-
-interface ArticleProps {
-  article: Article,
-  onDelete: (articleId : string) => void,
-  onUpdate: (updatedArticle: Article) => void
-}
+import { Article, ArticleProps } from '../../interfaces/article.interfaces';
 
 
 export default function ArticleCard({article, onDelete, onUpdate} : ArticleProps) {

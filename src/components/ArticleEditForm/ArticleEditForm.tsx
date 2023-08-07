@@ -1,16 +1,5 @@
 import React, { useState } from 'react';
-
-interface Article {
-    _id: string;
-    title: string;
-    content: string;
-  }
-
-interface ArticleEditFormProps {
-  article: Article;
-  onUpdate: (updatedArticle: Article) => void;
-  setEditing: (value: boolean) => void;
-}
+import { Article, ArticleEditFormProps } from '../../interfaces/article.interfaces';
 
 const ArticleEditForm: React.FC<ArticleEditFormProps> = ({ article, onUpdate, setEditing }) => {
   const [title, setTitle] = useState(article.title);

@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGIN_FAILURE } from '../../redux/actions/actionTypes/auth.action-types';
 import { OPEN_FAILURE, OPEN_SUCCESS } from '../../redux/actions/actionTypes/authModal.action-types';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 export default function Header() {

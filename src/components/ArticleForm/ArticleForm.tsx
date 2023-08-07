@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-
-interface Article {
-    _id: string;
-    title: string;
-    content: string;
-  }
-
-interface ArticleFormProps {
-  onCreate: (newArticle: Article) => void;
-}
+import { ArticleFormProps } from '../../interfaces/article.interfaces';
 
 const ArticleForm: React.FC<ArticleFormProps> = ({ onCreate }) => {
   const [title, setTitle] = useState('');
@@ -48,7 +38,7 @@ const ArticleForm: React.FC<ArticleFormProps> = ({ onCreate }) => {
   <button
     type="submit"
     className={'submit-button'}
-    disabled={!title || !content} // Відключити кнопку, якщо поля порожні
+    disabled={!title || !content}
   >
     Create Article
   </button>

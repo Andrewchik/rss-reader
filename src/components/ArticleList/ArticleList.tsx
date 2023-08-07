@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ArticleCard from '../ArticleCard/ArticleCard';
 import ArticleForm from '../ArticleForm/ArticleForm';
 import { useSelector } from 'react-redux';
-
-interface Article {
-  _id: string;
-  title: string;
-  content: string;
-}
+import { Article } from '../../interfaces/article.interfaces';
 
 export const ArticleList = () => {
   const isAuth = useSelector(({auth}) => auth.isLoggedIn);
@@ -51,7 +46,6 @@ export const ArticleList = () => {
   };
   
   
-
   return (
     <div>
       <div className="articles-create-block">

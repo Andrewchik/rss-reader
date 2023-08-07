@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../../redux/actions/actionTypes/auth.action-types';
-import { OPEN_FAILURE, OPEN_SUCCESS } from '../../redux/actions/actionTypes/authModal.action-types';
+import { OPEN_FAILURE } from '../../redux/actions/actionTypes/authModal.action-types';
 
 const validationSchema = yup.object({
   login: yup.string().required('Login is required'),
@@ -34,11 +34,9 @@ const SignInForm: React.FC = () => {
     }
   }
 
-
-
-    useEffect(() => {
-      checkAuth();
-    }, [dispatch]);
+  useEffect(() => {
+    checkAuth();
+  }, [dispatch]);
 
 
   const formik = useFormik({
