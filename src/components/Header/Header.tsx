@@ -21,7 +21,7 @@ const isAuth = useSelector(({auth}) => auth.isLoggedIn);
   
 
     const handleLogOut = () => {
-      fetch('http://localhost:3000/api/logout', {
+      fetch('http://localhost:3000/api/auth/logout', {
         method: 'POST',
         credentials: 'include',
       })

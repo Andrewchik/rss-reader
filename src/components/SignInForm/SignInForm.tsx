@@ -20,7 +20,7 @@ const SignInForm: React.FC = () => {
 
   async function checkAuth() {
     try {
-      const response = await fetch('http://localhost:3000/api/check-auth', {
+      const response = await fetch('http://localhost:3000/api/auth/check-auth', {
         credentials: 'include',
       });
       
@@ -49,7 +49,7 @@ const SignInForm: React.FC = () => {
     validationSchema: validationSchema,
     onSubmit: async (values : FormikValues) => {
       try {
-        const response = await fetch('http://localhost:3000/api/login', {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
