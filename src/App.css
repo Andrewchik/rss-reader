@@ -37,10 +37,31 @@
   }
 }
 
+.articles-create-block{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 .articles-list{
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.article-input , .article-textarea{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.article-input label {
+  margin-right: 10px;
+}
+
+.article-textarea label{
+  margin-right: 10px;
 }
 
 

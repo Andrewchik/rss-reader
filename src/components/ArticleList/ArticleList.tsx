@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ArticleCard from '../ArticleCard/ArticleCard';
 import ArticleForm from '../ArticleForm/ArticleForm';
+import { useSelector } from 'react-redux';
 
 interface Article {
   _id: string;
@@ -9,6 +10,7 @@ interface Article {
 }
 
 export const ArticleList = () => {
+  const isAuth = useSelector(({auth}) => auth.isLoggedIn);
   const [articles, setArticles] = useState<Article[]>([]);
 
 
@@ -52,8 +54,10 @@ export const ArticleList = () => {
 
   return (
     <div>
+      <div className="articles-create-block">
+        {isAuth && <ArticleForm onCreate={handleCreate} /> }
+      </div>
       <ul className='articles-list'>
-        <ArticleForm onCreate={handleCreate} />
         {articles.map(article => (
          <ArticleCard key={article._id} article={article} onDelete={onDeleteArticle} onUpdate={onUpdateArticle} />
         ))}

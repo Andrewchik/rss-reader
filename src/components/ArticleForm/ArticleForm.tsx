@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 interface Article {
     _id: string;
     title: string;
@@ -29,11 +30,11 @@ const ArticleForm: React.FC<ArticleFormProps> = ({ onCreate }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className={'article-input'}>
         <label>Title:</label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
-      <div>
+      <div className={'article-textarea'}>
         <label>Content:</label>
         <textarea value={content} onChange={(e) => setContent(e.target.value)} />
       </div>
