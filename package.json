@@ -30,6 +30,10 @@
     "web-vitals": "^2.1.4",
     "yup": "^1.2.0"
   },
+   "repository": {
+        "type": "git",
+        "url": "https://github.com/Andrewchik/rss-reader.git"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
