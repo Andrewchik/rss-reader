@@ -1,7 +1,6 @@
 {
-  "name": "rss-reader",
-  "version": "0.1.0",
-  "private": true,
+  "name": "my-frst-tea-org",
+  "version": "0.1.1",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -32,7 +31,7 @@
   },
    "repository": {
         "type": "git",
-        "url": "https://github.com/Andrewchik/rss-reader.git"
+        "url": "git+https://github.com/Andrewchik/rss-reader.git"
   },
   "scripts": {
     "start": "react-scripts start",
