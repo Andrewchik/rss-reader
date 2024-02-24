@@ -1,6 +1,6 @@
 {
   "name": "my-frst-tea-org",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -58,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "react": "^18.2.0",
     "@babel/plugin-proposal-private-property-in-object": "*",
     "@types/js-cookie": "^3.0.3",
     "@types/react-window": "^1.8.5"
